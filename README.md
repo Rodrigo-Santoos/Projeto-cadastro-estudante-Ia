@@ -1,64 +1,186 @@
-# Cadastro de Estudante com AI 🎓🤖
+# Cadastro Inteligente de Estudantes com IA 🎓🤖
 
-Sistema inteligente de cadastro de estudantes via chatbot com IA, criado para substituir formulários longos e melhorar a experiência de onboarding.
+Sistema de cadastro de estudantes via chatbot com Inteligência Artificial, desenvolvido para substituir formulários extensos, reduzir fricção no processo de onboarding e melhorar a experiência do usuário.
 
-## 🚀 Problema resolvido
+---
 
-Processos tradicionais de cadastro costumam ser extensos, cansativos e geram abandono no meio do preenchimento.
+## 🚀 Problema Resolvido
 
-## 💡 Solução
+Processos tradicionais de cadastro costumam ser:
 
-Um chatbot conduz o estudante durante o cadastro, coletando informações passo a passo, validando dados automaticamente e salvando tudo no banco de dados.
+- Longos e cansativos  
+- Pouco intuitivos  
+- Propensos a abandono no meio do fluxo  
+- Suscetíveis a erros de preenchimento  
+- Dependentes de validações manuais  
 
-## ✨ Funcionalidades
+---
 
-* Cadastro conversacional
-* Coleta progressiva de dados
-* Validação de e-mail / telefone / CPF
-* Persistência em MySQL
-* Painel administrativo
-* Histórico de conversas
-* Retomada de cadastro incompleto
+## 💡 Solução Proposta
 
-## 🛠️ Tecnologias
+Um chatbot inteligente conduz o estudante durante todo o processo de cadastro, coletando informações de forma natural e progressiva.
+
+Durante a conversa, a IA:
+
+- Solicita dados passo a passo  
+- Valida CPF, e-mail e telefone  
+- Corrige inconsistências  
+- Reduz atrito no preenchimento  
+- Finaliza o cadastro automaticamente no banco de dados  
+
+---
+
+## ✨ Principais Funcionalidades
+
+- Cadastro conversacional via chat  
+- Coleta progressiva de dados  
+- Validação automática de informações  
+- Persistência em banco MySQL  
+- Painel administrativo  
+- Histórico de conversas  
+- Retomada de cadastro interrompido  
+- Integração com IA generativa  
+- Busca vetorial com Qdrant  
+
+---
+
+## 🛠️ Tecnologias Utilizadas
 
 ### Backend
 
-* Java
-* Spring Boot
-* Spring Data JPA
-* MySQL
+- Node.js  
+- NestJS  
+- TypeScript  
+- MySQL  
+- OpenAI API  
+- Qdrant Vector Database  
 
 ### Frontend
 
-* Angular
-* TypeScript
-* HTML/CSS
+- Angular 17+  
+- TypeScript  
+- HTML5  
+- CSS3  
 
-### IA
+### Infraestrutura
 
-* API de modelo de linguagem
+- Docker  
+- Git  
 
+---
+
+## 🧱 Arquitetura da Solução
+
+```text
+Frontend Angular
+      ↓
+API NestJS
+      ↓
+IA Generativa + Qdrant
+      ↓
+MySQL
+```
 ## 📷 Screenshots
 
-(Adicionar imagens em /docs)
+Adicionar imagens em `/docs`
 
-## 🧱 Arquitetura
+Sugestões:
 
-Frontend Angular → API Spring Boot → IA → MySQL
+- Tela inicial do chatbot  
+- Fluxo de cadastro  
+- Painel administrativo  
+- Banco populado  
+- Dashboard de métricas  
 
-## ▶️ Como executar
+---
 
-```bash
-docker-compose up
+# ▶️ Como Executar o Projeto
+
+## Pré-requisitos
+
+Instale os seguintes itens na máquina:
+
+- Node.js (versão LTS recomendada)  
+- Git  
+- Google Chrome  
+- Docker Desktop  
+- MySQL Server / Workbench  
+
+---
+
+## Banco de Dados
+
+Crie manualmente o schema:
+
+```sql
+ciee_cadastro
 ```
 
-ou executar backend/frontend separadamente.
+---
 
-## 📌 Objetivo
+## Subindo o Qdrant (Docker)
 
-Projeto criado como protótipo de inovação para otimizar processos de matrícula/cadastro estudantil.
+```bash
+docker run -p 6333:6333 -v qdrant_storage:/qdrant/storage -d qdrant/qdrant
+```
+
+---
+
+## Rodando o Backend
+
+Entre na pasta `backend`:
+
+```bash
+npm install
+npm run start:dev
+```
+
+---
+
+## Rodando o Frontend
+
+Entre na pasta `frontend`:
+
+```bash
+npm install -g @angular/cli
+npm install
+ng serve
+```
+
+---
+
+## Acesso
+
+Abra no navegador:
+
+```text
+http://localhost:4200
+```
+
+---
+
+## ⚠️ Observações Importantes
+
+### WhatsApp não abriu?
+
+Será necessário gerar novo QR Code e reconectar.
+
+### Microfone bloqueado?
+
+Permita acesso no navegador.
+
+### Qdrant não conectou?
+
+Verifique se o Docker Desktop está ativo.
+
+---
+
+## 📌 Objetivo do Projeto
+
+Este projeto foi criado como protótipo de inovação para modernizar o processo de matrícula e cadastro estudantil, utilizando IA conversacional para aumentar eficiência operacional e melhorar a experiência do estudante.
+
+---
 
 ## 👨‍💻 Autor
 
-Rodrigo Oliveira
+**Rodrigo Oliveira**

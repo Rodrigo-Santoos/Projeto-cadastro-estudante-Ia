@@ -1,0 +1,17 @@
+[
+  { "id": 1, "name": "Universidade de São Paulo (USP)", "state": "SP" },
+  { "id": 2, "name": "Universidade Estadual de Campinas (UNICAMP)", "state": "SP" },
+  { "id": 3, "name": "Universidade Cruzeiro do Sul", "state": "SP" },
+  { "id": 4, "name": "Pontifícia Universidade Católica de São Paulo (PUC-SP)", "state": "SP" },
+  { "id": 5, "name": "Universidade Federal do Rio de Janeiro (UFRJ)", "state": "RJ" },
+  { "id": 6, "name": "Universidade do Estado do Rio de Janeiro (UERJ)", "state": "RJ" },
+  { "id": 7, "name": "Universidade Estácio de Sá", "state": "RJ" },
+  { "id": 8, "name": "Universidade Federal de Minas Gerais (UFMG)", "state": "MG" },
+  { "id": 9, "name": "Pontifícia Universidade Católica de Minas Gerais (PUC-MG)", "state": "MG" },
+  { "id": 10, "name": "Universidade Anhembi Morumbi", "state": "SP" },
+  { "id": 11, "name": "Centro Universitário Belas Artes", "state": "SP" },
+  { "id": 12, "name": "Universidade de Brasília (UnB)", "state": "DF" },
+  { "id": 13, "name": "Universidade Católica de Brasília", "state": "DF" },
+  { "id": 14, "name": "Universidade Federal do Rio Grande do Sul (UFRGS)", "state": "RS" },
+  { "id": 15, "name": "Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS)", "state": "RS" }
+]

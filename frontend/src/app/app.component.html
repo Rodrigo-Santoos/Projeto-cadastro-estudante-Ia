@@ -1,0 +1,55 @@
+<main class="page-container">
+  <!-- Fundo escuro e Layout principal imitando o painel de Login do CIEE -->
+  <!-- A tela de login atuará como fundo principal, conforme a imagem de referência -->
+  <div class="login-wrapper">
+    <div class="login-box">
+      <!-- CIEE Logo Simulado com CSS básico -->
+      <div class="logo">
+        <span class="logo-circle"></span>
+        <span class="logo-text">CIEE</span>
+      </div>
+      <h2>Acessar</h2>
+      
+      <!-- Input e botão visual (não funcionais no nosso app, servindo apenas para estética da imagem enviada) -->
+      <input type="text" placeholder="Digite seu código ou CPF" class="login-input" />
+      <div class="btn-container">
+        <button class="primary-btn-login">Próximo</button>
+      </div>
+
+      <!-- Divisor horizontal escrito "OU" -->
+      <div class="divider">
+        <span>OU</span>
+      </div>
+
+      <!-- Link simulação de cadstro nativo manual -->
+      <div class="register-link">
+         <span class="icon">👥</span> Cadastrar
+      </div>
+    </div>
+  </div>
+  
+  <!-- BOTÃO FAB (Floating Action Button) -->
+  <button class="chat-fab" (click)="openChat()" *ngIf="!isChatOpen && waConnected">
+    <span class="chat-icon">💬</span> Assistente CIEE
+  </button>
+  
+  <!-- WIDGET DO QR CODE DO WHATSAPP (Sempre no meio se não estiver conectado) -->
+  <div class="qr-overlay" *ngIf="!waConnected && qrCodeData">
+    <div class="qr-box">
+      <h2>Conecte seu WhatsApp</h2>
+      <p>Escaneie o código abaixo com seu celular para o Assistente ficar Online.</p>
+      <img [src]="qrCodeData" alt="QR Code WhatsApp" />
+    </div>
+  </div>
+  <div class="qr-overlay-loading" *ngIf="!waConnected && !qrCodeData">
+    <div class="qr-box">
+      <h2>Iniciando Assistente...</h2>
+      <p>Aguarde enquanto carregamos o sistema do servidor e ligamos o WhatsApp.</p>
+    </div>
+  </div>
+
+  <!-- CONTAINER DO CHAT (Na mesma área desenhada de vermelho na imagem) -->
+  <div class="chat-floating-window" [ngClass]="{'visible': isChatOpen}">
+    <app-chat (closeChat)="closeChat()" *ngIf="isChatOpen"></app-chat>
+  </div>
+</main>

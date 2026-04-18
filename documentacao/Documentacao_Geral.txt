@@ -1,0 +1,43 @@
+DOCUMENTAÇÃO GERAL - PROJETO CADASTRO ESTUDANTE (CIEE)
+Versão: 2.0 (Integração WhatsApp + IA Qdrant Anti-Alucinação)
+
+1. VISÃO GERAL
+Este projeto permite o cadastro de estudantes através de uma interação dinâmica via Chat. 
+Agora ele é Multi-Plataforma: o estudante pode realizar o fluxo totalmente via Navegador (Web) ou escolher ser abordado ativamente pelo WhatsApp.
+
+Além disso, a Inteligência Artificial foi aprimorada com a engine "Function Calling/Tools" da OpenAI, impedindo a alucinação (invenção de dados baseados na conversa), pois toda faculdade extraída da fala/texto passa por um crivo no banco vetorial de IA (Qdrant).
+
+2. ARQUITETURA
+O sistema possui 3 pilares de dados e lógica:
+- FRONTEND: Angular 17+ (Escrito puramente em TS com Standalone Components). Responsável pelas views, CSS imitando portal CIEE de Login e integração da Web Speech API do Google para ditar áudios sem precisar digitar.
+- BACKEND: NestJS + TypeORM rodando na porta 3000. Fornece endpoints sólidos para interface local REST e comanda internamente módulos pesados do ChatGPT (Extrações, Tools) e whatsapp-web.js (Core do wpp).
+- BANCOS DE DADOS:
+    * MySQL (Relacional estrutural): Tabela `ciee_cadastro` persistindo Nomes, Emails, CPFs e Semestres via TypeORM (que gera sozinho a tabela).
+    * Qdrant (Vetorial via Docker na porta 6333): Coleção `escolas_brasil` criada no startup para injetar e fazer buscas semânticas (Cosine Distance) baseadas nos Estados de atuação do Aluno usando o DDD capturado.
+
+3. REQUISITOS PARA RODAR
+- Node 18+ instalado.
+- MySQL rodando em localhost:3306 com db `ciee_cadastro`, root / root. (Ajustável no app.module.ts)
+- Docker Desktop rodando o container local do banco Qdrant:
+   > docker run -p 6333:6333 qdrant/qdrant
+- Chromium/Chrome instalado localmente (Para o Whatsapp-web rodar em background).
+
+4. MÓDULOS E BIBLIOTECAS MUDANÇAS (BACKEND)
+   - whatsapp-web.js: Cria uma mini instância do WhatsApp Web, gera o link de QRCode pra ser usado no celular e captura mensagens (msg.body) injetando no mesmo fluxo do Chat.
+   - qrcode/qrcode-terminal: Gera os graficos base64 do QR code pra gente desenhar no Front end.
+   - @qdrant/js-client-rest: Conecta na IA de buscas.
+   - openai fetch: Mapeia nativamente o modelo text-embedding-3-small (Para gerar vetores de escolas) e o gpt-4o-mini (com Tool Calling strict) para o cérebro das conversas.
+
+5. COMO RODAR DO ZERO
+1. Clone / Abra as pastas.
+2. No backend, certifique-se de que o NPM INSTALL baixou o Puppeteer para o whatsapp. `npm run start:dev` reiniciará a api na 3000.
+3. Observe o backend gerar o log: "[WhatsApp] Novo código QR Gerado!".
+4. No frontend, rode `npm start` abrindo o `localhost:4200`.
+5. A tela do frontend mostrará o QR Code em tamanho grande. LEIA ele com a parte "Aparelhos Conectados" no seu aplicativo real de WhatsApp.
+6. A tela sumirá (desativando a modal) assim que der PING de Ready no back-end.
+
+6. FLUXO DE EXECUÇÃO
+- Ao clicar no Botão e escolher "Pelo WhatsApp", o usuário digita (11) 9999-9999.
+- O Frontend bate na rota POST `/whatsapp/start`.
+- Backend converte o número para @c.us e começa o processamento `processChat` simuladamente.
+- A IA manda a mensagem pelo WPP. Dali por diante, todo Listener `client.on('message')` é rastreado globalmente numa Session pela memoria ram garantindo que o Student seja questionado até extrair tudo. Outras mensagens com "Sim" salvarão no TypeORM e encerrarão o protocolo!

@@ -1,0 +1,16 @@
+2026/04/17-22:02:53.524 11d8 Reusing MANIFEST C:\Users\rodri\OneDrive\Documentos\Projeto Cadastro Estudante\backend\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/04/17-22:02:53.524 11d8 Recovering log #79
+2026/04/17-22:02:53.560 11d8 Reusing old log C:\Users\rodri\OneDrive\Documentos\Projeto Cadastro Estudante\backend\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000079.log 
+2026/04/17-22:02:53.561 11d8 Delete type=2 #78
+2026/04/17-22:02:53.561 11d8 Delete type=2 #81
+2026/04/17-22:02:56.081 5e48 Level-0 table #86: started
+2026/04/17-22:02:56.098 5e48 Level-0 table #86: 1133600 bytes OK
+2026/04/17-22:02:56.099 5e48 Delete type=0 #79
+2026/04/17-22:02:56.102 5e48 Compacting 1@1 + 2@2 files
+2026/04/17-22:02:56.155 5e48 Generated table #87@1: 30158 keys, 2184553 bytes
+2026/04/17-22:02:56.186 5e48 Generated table #88@1: 32856 keys, 1565056 bytes
+2026/04/17-22:02:56.186 5e48 Compacted 1@1 + 2@2 files => 3749609 bytes
+2026/04/17-22:02:56.187 5e48 compacted to: files[ 0 0 2 0 0 0 0 ]
+2026/04/17-22:02:56.187 5e48 Delete type=2 #82
+2026/04/17-22:02:56.187 5e48 Delete type=2 #83
+2026/04/17-22:02:56.187 5e48 Delete type=2 #86

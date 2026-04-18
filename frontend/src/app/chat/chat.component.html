@@ -1,0 +1,66 @@
+<div class="chat-wrapper">
+  <div class="chat-header">
+    <div class="avatar">
+      <img src="assets/img/Logo_CIEE_azul.png" alt="CIEE">
+    </div>
+    <div class="header-info">
+      <h2>Chat CIEE</h2>
+      <p class="status">Online e pronto para ajudar</p>
+    </div>
+    <button class="close-btn" (click)="onClose()" title="Fechar">✕</button>
+  </div>
+
+  <div class="chat-messages" #chatContainer>
+    <div *ngFor="let msg of messages" class="message-row" [ngClass]="{'user-row': msg.sender === 'user'}">
+      <div class="message" [ngClass]="msg.sender" style="white-space: pre-line;">
+        {{ msg.text }}
+        <div *ngIf="msg.showConfirm" style="margin-top: 10px;">
+          <button class="confirm-btn" (click)="confirmData()">Sim, Confirmar Cadastro</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Botões Iniciais Pós a primeira MEnsagem -->
+    <div class="message-row" *ngIf="flowSelected === null" style="margin-top: 10px;">
+        <div class="flow-buttons">
+           <button class="flow-btn web-btn" (click)="selectFlow('web')">💻 Por aqui mesmo</button>
+           <button class="flow-btn wa-btn" (click)="selectFlow('whatsapp')">📱 Pelo WhatsApp</button>
+        </div>
+    </div>
+  </div>
+
+  <div class="chat-input-area" *ngIf="flowSelected !== null">
+    <input 
+      *ngIf="flowSelected === 'web'"
+      type="text" 
+      [(ngModel)]="userInput" 
+      (keyup.enter)="sendMessage()" 
+      placeholder="Digite ou mande áudio..." 
+      class="text-input"
+    >
+    <input 
+      *ngIf="flowSelected === 'whatsapp'"
+      type="text" 
+      [(ngModel)]="whatsappNumber" 
+      (keyup.enter)="sendMessage()" 
+      placeholder="Seu número (Ex: 1199999999)" 
+      class="text-input"
+    >
+    
+    <!-- Só mostrar clipe/microfone na Web -->
+    <ng-container *ngIf="flowSelected === 'web'">
+      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".pdf" style="display: none">
+      <button class="attach-btn" (click)="fileInput.click()" title="Anexar Currículo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+      </button>
+      <button class="voice-btn" (click)="toggleVoice()" [ngClass]="{'recording': isRecording}" title="Falar por voz">
+        <svg *ngIf="!isRecording" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+        <svg *ngIf="isRecording" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="12" height="12" x="6" y="6" rx="2"/></svg>
+      </button>
+    </ng-container>
+
+    <button class="send-btn" (click)="sendMessage()" title="Enviar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>

@@ -93,6 +93,27 @@ Sugestões:
 - Dashboard de métricas  
 
 ---
+## 🔑 Configuração da Chave da OpenAI
+
+Para utilizar os recursos de Inteligência Artificial deste projeto, é necessário gerar sua própria chave de API da OpenAI.
+
+### Como criar sua chave:
+
+1. Acesse o portal oficial da OpenAI:  
+https://platform.openai.com/api-keys
+
+2. Faça login na sua conta.
+
+3. Clique em **Create new secret key**.
+
+4. Copie a chave gerada.
+
+5. no codigo subistitua pela sua chave nessa variavel
+```env
+OPENAI_API_KEY=****************
+```
+---
+
 
 # ▶️ Como Executar o Projeto
 
